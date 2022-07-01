@@ -58,7 +58,7 @@ class RecentPage extends StatelessWidget {
             children: [
               AnimatedButton(
                 height: 50.h,
-                width: 423.w,
+                width: 200.w,
                 child: Text(
                   'Clear Recent',
                   style: TextStyle(

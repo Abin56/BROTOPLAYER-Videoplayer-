@@ -105,18 +105,21 @@ class _AllVideoTileState extends State<AllVideoTile> {
                                     //                   ),
                                     //                 )
                                     leading: Padding(
-                                      padding: const EdgeInsets.only(top: 4),
+                                      padding: const EdgeInsets.only(top: 5),
                                       child: SizedBox(
                                           height: 200,
                                           width: 90,
                                           child: Center(
                                             child: Container(
+                                              
                                               height: 50,
                                               width: 50,
                                               decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(30),
                                                   image: DecorationImage(
                                                       image: AssetImage(
-                                                          'asset/images/Thumbnail.png'))),
+                                                        
+                                                          'asset/images/new.jpeg'))),
                                             ),
                                           )),
                                     ),

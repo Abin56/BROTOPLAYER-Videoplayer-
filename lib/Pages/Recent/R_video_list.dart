@@ -15,7 +15,7 @@ class RecentVideoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+Recentlistingmode? obj = recentDB.getAt(index);
 
     print("object");
     double _w = MediaQuery.of(context).size.width;
@@ -67,23 +67,30 @@ class RecentVideoList extends StatelessWidget {
             ),
           ),
           leading: Padding(
-            padding: const EdgeInsets.only(top: 4),
+            padding: const EdgeInsets.only(top: 5),
             child: SizedBox(
               height: 200,
               width: 90,
               child: FutureBuilder(
-                future: getThumbnail(playlistvideoname),
-                builder: (context, AsyncSnapshot<String?> snapshot) =>
-                    snapshot.hasData
-                        ? Image.file(File(snapshot.data!))
-                        :  Center(
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(image: DecorationImage(image: AssetImage('asset/images/croplogo.jpg'))),
-                            ),
-                          ),
-              ),
+                                        future:
+                                        
+                                            getThumbnail(obj!.recentpath),
+                                        builder: (context,
+                                                AsyncSnapshot<String?>
+                                                    snapshot) =>
+                                            snapshot.hasData
+                                                ? Image.file(
+                                                    File(snapshot.data!))
+                                                : Center(
+                                                    child: Container(
+                                                      height: 50,
+                                                      width: 50,
+                                                      decoration: BoxDecoration(image: DecorationImage(image:AssetImage('asset/images/Thumbnail.png')))
+                                                    
+                                                          ,
+                                                    ),
+                                                  ),
+                                      ),
             ),
           ),
           trailing:getRecentPop(index: index)

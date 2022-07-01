@@ -1,7 +1,5 @@
-
 import 'package:broto_player/Database/datamode.dart';
 import 'package:broto_player/Fetching%20files/InnerFetching/fetch_video_data.dart';
-import 'package:broto_player/Pages/Recent/R_video_list.dart';
 import 'package:broto_player/main.dart';
 import 'package:broto_player/videoplayer/widget/Project/allvideoplayer.dart';
 import 'package:broto_player/widgets/Drawer/drawer.dart';
@@ -21,7 +19,7 @@ import 'Pages/SearchingVideos/searchdelegate.dart';
 // import 'package:flutter_gradients/flutter_gradients.dart';
 
 class Homescreen extends StatefulWidget {
-  const  Homescreen({Key? key}) : super(key: key);
+  const Homescreen({Key? key}) : super(key: key);
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -31,9 +29,10 @@ class _HomescreenState extends State<Homescreen> {
   int currentIndex = 0;
   @override
   void initState() {
+    splashFetch();
     super.initState();
   }
-
+DateTime timeBackPressed = DateTime.now();
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -52,29 +51,29 @@ class _HomescreenState extends State<Homescreen> {
           actions: [
             IconButton(
                 onPressed: () =>
+                
                     showSearch(context: (context), delegate: Search()),
                 icon: const Icon(Icons.search)),
-            PopupMenuButton(
-                color: Colors.black,
-                itemBuilder: ((context) => [
-                      PopupMenuItem(
-                          child: Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomOrientationPlayer()));
-                            print('haiiiiii');
-                              },
-                              icon: const Icon(Icons.exit_to_app)),
-                          const Text(
-                            "EXIT",
-                            style: TextStyle(
-                                color: Colors.amber,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ))
-                    ]))
+            // PopupMenuButton(
+            //     color: Colors.black,
+            //     itemBuilder: ((context) => [
+            //           PopupMenuItem(
+            //               child: Row(
+            //             children: [
+            //               IconButton(
+            //                   onPressed: () {
+            //                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomOrientationPlayer()));
+            //                   },
+            //                   icon: const Icon(Icons.exit_to_app)),
+            //               const Text(
+            //                 "EXITzz",
+            //                 style: TextStyle(
+            //                     color: Colors.amber,
+            //                     fontWeight: FontWeight.bold),
+            //               )
+            //             ],
+            //           ))
+            //         ]))
           ],
           title: Text(screenTitile[currentIndex]),
           flexibleSpace: Container(
@@ -91,25 +90,19 @@ class _HomescreenState extends State<Homescreen> {
         body: screen[currentIndex],
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if(recentDB.values.isEmpty){
-
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return AllvideoPlayer(urls: fetchedVideosPath);
-            })
-            );
-              
-            }else{
-              
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return AllvideoPlayer(urls: getList(),index: recentDB.values.length-1,);
-            })
-            );
-           
- 
-         
-          }
+            if (recentDB.values.isEmpty) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return AllvideoPlayer(urls: fetchedVideosPath);
+              }));
+            } else {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return AllvideoPlayer(
+                  urls: getList(),
+                  index: recentDB.values.length - 1,
+                );
+              }));
+            }
           },
-          
           child: const Icon(Icons.play_arrow),
         ),
         drawer: Drawer(
@@ -118,7 +111,7 @@ class _HomescreenState extends State<Homescreen> {
             child: Column(
               children: [
                 MyHeaderDrawer(),
-                MyDrawerList(),
+                MyDrawerList(context),
               ],
             ),
           ),
@@ -232,11 +225,12 @@ class HomeScreens extends StatelessWidget {
 
 ////////////////////////////////////////////////////////////
 }
-           getList() {
-    List<Recentlistingmode> objList = recentDB.values.toList();
-    List<String> videoPath = [];
-    for (Recentlistingmode obj in objList) {
-      videoPath.add(obj.recentpath);
-    }
-    return videoPath;
+
+getList() {
+  List<Recentlistingmode> objList = recentDB.values.toList();
+  List<String> videoPath = [];
+  for (Recentlistingmode obj in objList) {
+    videoPath.add(obj.recentpath);
   }
+  return videoPath;
+}

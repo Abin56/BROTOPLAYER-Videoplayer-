@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
-
 import '../../Fetching files/InnerFetching/video_with_info.dart';
-import '../../homescreen.dart';
 import '../../videoplayer/widget/Project/allvideoplayer.dart';
 
 class Search extends SearchDelegate {
@@ -13,8 +9,9 @@ class Search extends SearchDelegate {
     return <Widget>[
       IconButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => const Homescreen())));
+            Navigator.pop(context);
+            // Navigator.pushReplacement(context,
+            //     MaterialPageRoute(builder: ((context) => const Homescreen())));
           },
           icon: const Icon(Icons.clear))
     ];
@@ -65,7 +62,7 @@ class Search extends SearchDelegate {
                         builder: (ctx) => AllvideoPlayer(urls: calling , index: index),
                       ),
                     ),
-                    leading: Image.asset('asset/images/Thumbnail.png'),
+                    leading: Image.asset('asset/images/play button.jpg'),
                     title: Text(
                       video.title!,
                       style: TextStyle(
