@@ -9,6 +9,7 @@ ValueNotifier<List<VideoData>> fetchedVideosWithInfo =
     ValueNotifier([]); //videos with info
 
 Future getVideoWithInfo() async {
+  videoDB.clear();
   List<DbVideplayer> modelList = [];
   DbVideplayer videoObj;
   fetchedVideosWithInfo.value.clear();

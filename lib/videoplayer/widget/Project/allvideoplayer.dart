@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:broto_player/Database/datamode.dart';
 import 'package:broto_player/Pages/Recent/R_video_list.dart';
-import 'package:broto_player/main.dart';
 import 'package:broto_player/videoplayer/widget/Project/controls.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';

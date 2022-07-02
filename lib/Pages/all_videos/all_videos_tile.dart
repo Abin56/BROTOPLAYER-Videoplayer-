@@ -96,14 +96,6 @@ class _AllVideoTileState extends State<AllVideoTile> {
                                         ],
                                       ),
                                     ),
-                                    // Center(
-                                    //                   child: Container(
-                                    //                     height: 50,
-                                    //                     width: 50,
-                                    //                    decoration: BoxDecoration(image: DecorationImage(image: AssetImage('asset/images/Thumbnail.png')))
-                                    //                         ,
-                                    //                   ),
-                                    //                 )
                                     leading: Padding(
                                       padding: const EdgeInsets.only(top: 5),
                                       child: SizedBox(
@@ -111,14 +103,13 @@ class _AllVideoTileState extends State<AllVideoTile> {
                                           width: 90,
                                           child: Center(
                                             child: Container(
-                                              
                                               height: 50,
                                               width: 50,
                                               decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(30),
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
                                                   image: DecorationImage(
                                                       image: AssetImage(
-                                                        
                                                           'asset/images/new.jpeg'))),
                                             ),
                                           )),
